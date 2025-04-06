@@ -1,6 +1,8 @@
 let resp = document.querySelectorAll('input[name="resp"]');
-let btnProxima = document.querySelector('.btn-success');
-let contquestion = 10;
+let btnNext = document.getElementById("btnNext");
+let contquestion = 0;
+let resultado = document.getElementById("resultado");
+let questions = document.getElementById("questions");
 let question = document.getElementById("question");
 let resp1 = document.getElementById("resp1");
 let resp2 = document.getElementById("resp2");
@@ -72,6 +74,10 @@ const listaQuestoes = [
 
 function insertQuestion() {
 
+    if (contquestion == 11) {
+        btnNext.innerHTML = "Finalizar teste";
+    }
+
     if (contquestion < listaQuestoes.length) {
         question.innerHTML = listaQuestoes[contquestion].question;
         resp1.value = listaQuestoes[contquestion].val1;
@@ -81,13 +87,17 @@ function insertQuestion() {
 
         contquestion++;
     } else {
-        alert("Finalizou!");
+        console.log("entrou");
         contquestion = 0;
-        console.log(options);
+        questions.classList.toggle("desabilitado");
+        resultado.classList.toggle("desabilitado");
+        console.log(resultado.style.display);
+        calcResultado();
+
     }
 }
 
-function teste() {
+function validaReposta() {
     let auxResp;
     let valid = false;
     let alert = document.getElementById("alert");
@@ -104,7 +114,6 @@ function teste() {
         options.forEach((vlrAux) => {
             if (vlrAux.tipe == auxResp) {
                 vlrAux.cont++;
-                console.log(vlrAux.descripition);
             }
         });
 
@@ -121,54 +130,42 @@ function teste() {
     }
 }
 
-// function contOptions() {
-//     let temp = 0;
-//     let afir = 0;
-//     let serv = 0;
-//     let pres = 0;
-//     let fisi = 0;
-//     let contador = 0;
+function calcResultado() {
+    let mostrarResultado12 = document.getElementById("mostrarResultado12");
+    let mostrarResultado = document.getElementById("mostrarResultado");
+    let posicao = 0;
 
-//     listaQuestoes.forEach((event) => {
-//         if (event.val1 == "temp") {
-//             temp++;
-//         }
-//         if (event.val1 == "afir") {
-//             afir++;
-//         }
-//         if (event.val1 == "serv") {
-//             serv++;
-//         }
-//         if (event.val1 == "pres") {
-//             pres++;
-//         }
-//         if (event.val1 == "fisi") {
-//             fisi++;
-//         }
+    console.log(options);
+
+    options.sort((a, b) => b.cont - a.cont);
+
+    console.log(options);
+
+    for (let aux = 0; aux < options.length; aux++) {
+        posicao++;
+        if (posicao < 3) {
+            mostrarResultado12.innerHTML += posicao + "º " + options[aux].descripition + " - " + options[aux].cont + "<br>";
+        }
+        if (posicao > 2) {
+            mostrarResultado.innerHTML += posicao + "º " + options[aux].descripition + " - " + options[aux].cont + "<br>";
+        }
+
+    }
 
 
-//         if (event.val2 == "temp") {
-//             temp++;
-//         }
-//         if (event.val2 == "afir") {
-//             afir++;
-//         }
-//         if (event.val2 == "serv") {
-//             serv++;
-//         }
-//         if (event.val2 == "pres") {
-//             pres++;
-//         }
-//         if (event.val2 == "fisi") {
-//             fisi++;
-//         }
-//     })
+}
 
-//     console.log(temp);
-//     console.log(afir);
-//     console.log(serv);
-//     console.log(pres);
-//     console.log(fisi);
-// }
+function restart() {
+
+    questions.classList.toggle("desabilitado");
+    resultado.classList.toggle("desabilitado");
+    btnNext.innerHTML = "Próxima Pergunta";
+
+    options.forEach(function (event) {
+        event.cont = 0;
+    });
+
+    insertQuestion();
+}
 
 insertQuestion();

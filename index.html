@@ -48,11 +48,23 @@
             <div class="mt-5">
                 <button class="btn btn-warning text-light disabled p-2">Voltar
                     Pergunta</button>
-                <button onclick="teste()" class="btn btn-info p-2 text-light">Proxima
+                <button id="btnNext" onclick="validaReposta()" class="btn btn-info p-2 text-light">Próxima
                     Pergunta</button>
             </div>
 
         </div>
+
+        <div id="resultado" class="container desabilitado">
+            <h2>Teste Finalizado</h2>
+            <p style="font-size: 20px;">Esse foi o resultado</p>
+            <p style="font-size: 20px;">As duas linguagens predominantes são essas:</p>
+            <p id="mostrarResultado12" class="text-success" style="font-size: 20px; font-weight: bold;"></p>
+            <br>
+            <p id="mostrarResultado" class="text-warning" style="font-size: 15px; font-weight: bold;"></p>
+
+            <button class="btn btn-success p-2 text-light mb-5 mt-5" onclick="restart()">Reinciar Teste</button>
+        </div>
+
     </div>
 
 

@@ -22,6 +22,14 @@ body {
     height: 80dvh;
 }
 
+#resultado {
+    height: 80dvh;
+}
+
+.desabilitado {
+    display: none;
+}
+
 #alert {
     position: fixed;
     margin: auto;
@@ -39,6 +47,10 @@ body {
     }
 
     #questions {
+        height: 70dvh;
+    }
+
+    #resultado {
         height: 70dvh;
     }
 }
