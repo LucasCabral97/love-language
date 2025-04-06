@@ -15,11 +15,18 @@ body {
 #container-teste {
     width: 90%;
     margin-top: 5%;
-    height: 85dvh;
+    height: 80dvh;
 }
 
 #questions {
     height: 80dvh;
+}
+
+#alert {
+    position: fixed;
+    margin: auto;
+    opacity: 0;
+
 }
 
 /* resposivo */
