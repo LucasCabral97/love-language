@@ -1,6 +1,6 @@
 let resp = document.querySelectorAll('input[name="resp"]');
 let btnProxima = document.querySelector('.btn-success');
-let contquestion = 0;
+let contquestion = 10;
 let question = document.getElementById("question");
 let resp1 = document.getElementById("resp1");
 let resp2 = document.getElementById("resp2");
@@ -72,17 +72,18 @@ const listaQuestoes = [
 
 function insertQuestion() {
 
-    question.innerHTML = listaQuestoes[contquestion].question;
-    resp1.value = listaQuestoes[contquestion].val1;
-    resp2.value = listaQuestoes[contquestion].val2;
-    textResp1.innerHTML = listaQuestoes[contquestion].resp1;
-    textResp2.innerHTML = listaQuestoes[contquestion].resp2;
+    if (contquestion < listaQuestoes.length) {
+        question.innerHTML = listaQuestoes[contquestion].question;
+        resp1.value = listaQuestoes[contquestion].val1;
+        resp2.value = listaQuestoes[contquestion].val2;
+        textResp1.innerHTML = listaQuestoes[contquestion].resp1;
+        textResp2.innerHTML = listaQuestoes[contquestion].resp2;
 
-    if (contquestion >= listaQuestoes.length) {
-        console.log("Fim do questionário");
-        return;
-    } else {
         contquestion++;
+    } else {
+        alert("Finalizou!");
+        contquestion = 0;
+        console.log(options);
     }
 }
 
