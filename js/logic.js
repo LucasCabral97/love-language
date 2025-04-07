@@ -180,6 +180,9 @@ function voltar() {
         }
     });
 
+    let alert = document.getElementById("alert");
+    alert.style.opacity = "0";
+
     insertQuestion();
 }
 
