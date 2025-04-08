@@ -59,4 +59,8 @@ body {
     #resultado {
         height: 70dvh;
     }
+
+    #btnFinal button {
+        width: 50%;
+    }
 }

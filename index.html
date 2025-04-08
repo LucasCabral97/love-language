@@ -20,27 +20,27 @@
     <div id="container-teste"
         class="container bg-light border border-solid border-light border-2 rounded-5 text-center d-block mx-auto p-3">
 
-        <div class="container" id="questions">
+        <div id="questions" class="container">
 
             <div class="mb-auto p-2">
                 <h3 id="question"></h3>
             </div>
 
-            <div class="mt-2 mb-5 p-2">
+            <div class="mt-2 p-2">
                 <div style="width: 70%; height: 20dvh;" class="btn-group-vertical" role="group"
                     aria-label="Vertical radio toggle button group">
 
                     <input type="radio" class="btn-check" name="resp" id="resp1" value="">
-                    <label class="btn btn-outline-success" for="resp1" id="textResp1"></label>
+                    <label class="btn btn-outline-success pt-3" for="resp1" id="textResp1"></label>
 
                     <input type="radio" class="btn-check" name="resp" id="resp2" value="">
-                    <label class="btn btn-outline-success" for="resp2" id="textResp2"></label>
+                    <label class="btn btn-outline-success pt-3" for="resp2" id="textResp2"></label>
 
                 </div>
             </div>
 
 
-            <div id="btns" class="mt-5">
+            <div id="btns" class="mt-2">
                 <button onclick="voltar()" id="voltar" class="btn btn-warning text-dark disabled p-2">Voltar
                     Pergunta</button>
                 <button id="btnNext" onclick="validaReposta()" class="btn btn-info p-2 text-dark">Próxima
@@ -54,14 +54,21 @@
         </div>
 
         <div id="resultado" class="container desabilitado">
-            <h2>Teste Finalizado</h2>
-            <p style="font-size: 20px;">Esse foi o resultado</p>
-            <p style="font-size: 20px;">As duas linguagens predominantes são essas:</p>
-            <p id="mostrarResultado12" class="text-success" style="font-size: 20px; font-weight: bold;"></p>
-            <br>
-            <p id="mostrarResultado" class="text-warning" style="font-size: 15px; font-weight: bold;"></p>
+            <div id="infoResultado" class="container">
+                <h2>Teste Finalizado</h2>
+                <p style="font-size: 20px;">Esse foi o resultado...<br>As duas linguagens predominantes são essas:</p>
+                <p id="mostrarResultado12" class="text-success mb-2" style="font-size: 20px; font-weight: bold;"></p>
+                <p id="mostrarResultado" class="text-warning" style="font-size: 15px; font-weight: bold;"></p>
+            </div>
 
-            <button class="btn btn-success p-2 text-light mb-5 mt-5" onclick="restart()">Reinciar Teste</button>
+            <div id="btnFinal" class="container">
+
+                <button class="btn btn-success p-3 text-light col-10 mb-2" onclick="restart()">Reinciar
+                    Teste</button>
+                <button class="btn btn-info p-1 text-light col-10 mb-2 desabilitado" onclick="">Compartilhar
+                    resultado! <img src="img/compartilhar.png"> </button>
+
+            </div>
         </div>
 
     </div>
