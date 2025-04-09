@@ -9,6 +9,7 @@ let resp2 = document.getElementById("resp2");
 let textResp1 = document.getElementById("textResp1");
 let textResp2 = document.getElementById("textResp2");
 let btnvoltar = document.getElementById("voltar");
+const container_teste = document.getElementById("container-teste");
 
 const options = [
     { tipe: "temp", descripition: "Tempo de Qualidade", cont: 0 },
@@ -89,6 +90,10 @@ function insertQuestion() {
         contquestion = 0;
         questions.classList.toggle("desabilitado");
         resultado.classList.toggle("desabilitado");
+
+        container_teste.classList.remove("bg-light", "border", "border-solid", "border-light");
+        container_teste.classList.toggle("compartilhar");
+
         calcResultado();
     }
 
@@ -159,6 +164,10 @@ function restart() {
     mostrarResultado.innerHTML = "";
     questions.classList.toggle("desabilitado");
     resultado.classList.toggle("desabilitado");
+
+    container_teste.classList.add("bg-light", "border", "border-solid", "border-light");
+    container_teste.classList.toggle("compartilhar");
+
     btnNext.innerHTML = "Próxima Pergunta";
 
     options.forEach(function (event) { event.cont = 0; });
@@ -187,25 +196,24 @@ function voltar() {
 }
 
 function gerarImagem() {
-    ;
     const botoes = document.getElementById("btnFinal");
-    const container_teste = document.getElementById("container-teste");
+    const printBody = document.body;
+    const screenWidth = window.screen.width;
+    const screenHeight = window.screen.height;
 
-    container_teste.classList.remove("bg-light", "border", "border-solid", "border-light");
-    container_teste.classList.toggle("compartilhar");
     botoes.classList.toggle("desabilitado");
 
     // Configura opções para o html-to-image
-    htmlToImage.toPng(container_teste, {
+    htmlToImage.toPng(printBody, {
         backgroundColor: '#ffcccc', // Define um fundo caso o elemento seja transparente
         quality: 1, // Qualidade da imagem (0 a 1)
-        pixelRatio: 2 // Aumenta a resolução para melhor qualidade
+        pixelRatio: 2, // Aumenta a resolução para melhor qualidade
+        width: screenWidth, //pegando a largura atual da tela
+        height: screenHeight //pegando a altura atual da tela
     })
         .then(function (dataUrl) {
             // Após gerar a imagem, reexibe os botões
             botoes.classList.toggle("desabilitado");
-            container_teste.classList.toggle("compartilhar");
-            container_teste.classList.add("bg-light", "border", "border-solid", "border-light");
 
             // Chama a função de compartilhamento com a dataUrl gerada
             compartilharImagem(dataUrl);
@@ -213,8 +221,6 @@ function gerarImagem() {
         .catch(function (error) {
             // Em caso de erro, reexibe os botões e exibe o erro no console
             botoes.classList.toggle("desabilitado");
-            container_teste.classList.toggle("compartilhar");
-            container_teste.classList.add("bg-light", "border", "border-solid", "border-light");
             console.error('Erro ao gerar a imagem:', error);
         });
 }

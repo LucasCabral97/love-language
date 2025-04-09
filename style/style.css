@@ -20,13 +20,16 @@ body {
 }
 
 .compartilhar {
-    box-sizing: border-box;
-    margin: auto;
-    background-size: cover;
+    max-width: max-content;
+    max-height: max-content;
     background-repeat: no-repeat;
     background-position: center;
     background-color: rgb(253, 141, 141);
     background-image: url(../img/result_fundo.jpg);
+}
+
+.sombra {
+    text-shadow: 2px 1px 1px black;
 }
 
 #questions {
