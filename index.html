@@ -11,6 +11,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js"></script>
 </head>
 
 <body>
@@ -54,6 +55,7 @@
         </div>
 
         <div id="resultado" class="container desabilitado">
+
             <div id="infoResultado" class="container">
                 <h2>Teste Finalizado</h2>
                 <p style="font-size: 20px;">Esse foi o resultado...<br>As duas linguagens predominantes são essas:</p>
@@ -62,17 +64,15 @@
             </div>
 
             <div id="btnFinal" class="container">
-
                 <button class="btn btn-success p-3 text-light col-10 mb-2" onclick="restart()">Reinciar
                     Teste</button>
-                <button class="btn btn-info p-1 text-light col-10 mb-2 desabilitado" onclick="">Compartilhar
+                <button class="btn btn-info p-1 text-light col-10 mb-2" onclick="gerarImagem()">Compartilhar
                     resultado! <img src="img/compartilhar.png"> </button>
-
             </div>
+
         </div>
 
     </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/logic.js"></script>

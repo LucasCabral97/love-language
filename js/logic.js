@@ -186,4 +186,73 @@ function voltar() {
     insertQuestion();
 }
 
+function gerarImagem() {
+    ;
+    const botoes = document.getElementById("btnFinal");
+    const container_teste = document.getElementById("container-teste");
+
+    container_teste.classList.remove("bg-light", "border", "border-solid", "border-light");
+    container_teste.classList.toggle("compartilhar");
+    botoes.classList.toggle("desabilitado");
+
+    // Configura opções para o html-to-image
+    htmlToImage.toPng(container_teste, {
+        backgroundColor: '#ffcccc', // Define um fundo caso o elemento seja transparente
+        quality: 1, // Qualidade da imagem (0 a 1)
+        pixelRatio: 2 // Aumenta a resolução para melhor qualidade
+    })
+        .then(function (dataUrl) {
+            // Após gerar a imagem, reexibe os botões
+            botoes.classList.toggle("desabilitado");
+            container_teste.classList.toggle("compartilhar");
+            container_teste.classList.add("bg-light", "border", "border-solid", "border-light");
+
+            // Chama a função de compartilhamento com a dataUrl gerada
+            compartilharImagem(dataUrl);
+        })
+        .catch(function (error) {
+            // Em caso de erro, reexibe os botões e exibe o erro no console
+            botoes.classList.toggle("desabilitado");
+            container_teste.classList.toggle("compartilhar");
+            container_teste.classList.add("bg-light", "border", "border-solid", "border-light");
+            console.error('Erro ao gerar a imagem:', error);
+        });
+}
+
+// Função para compartilhar a imagem gerada ou oferecer download como fallback
+function compartilharImagem(dataUrl) {
+    // Converte a dataUrl em Blob para compartilhar ou baixar
+    fetch(dataUrl)
+        .then(res => res.blob())
+        .then(blob => {
+            // Cria um arquivo a partir do Blob
+            const arquivo = new File([blob], 'resultado.png', { type: 'image/png' });
+
+            // Verifica se o navegador suporta a Web Share API
+            if (navigator.share) {
+                navigator.share({
+                    files: [arquivo],
+                    title: 'Meu Resultado',
+                    text: 'Confira o meu resultado!'
+                })
+                    .then(() => console.log('Compartilhado com sucesso!'))
+                    .catch(error => console.error('Erro ao compartilhar:', error));
+            } else {
+                // Fallback: download da imagem
+                alert('Seu navegador não suporta compartilhamento nativo.');
+                baixarImagem(dataUrl);
+            }
+        });
+}
+
+// Função para baixar a imagem como fallback
+function baixarImagem(dataUrl) {
+    const link = document.createElement('a');
+    link.href = dataUrl;
+    link.download = 'resultado.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
 insertQuestion();

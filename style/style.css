@@ -19,6 +19,16 @@ body {
     height: 80dvh;
 }
 
+.compartilhar {
+    box-sizing: border-box;
+    margin: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgb(253, 141, 141);
+    background-image: url(../img/result_fundo.jpg);
+}
+
 #questions {
     height: 80dvh;
 }
