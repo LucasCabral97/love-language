@@ -89,12 +89,9 @@ function insertQuestion() {
         btnvoltar.classList.toggle("disabled");
         contquestion = 0;
         questions.classList.toggle("desabilitado");
-        resultado.classList.toggle("desabilitado");
 
-        container_teste.classList.remove("bg-light", "border", "border-solid", "border-light");
-        container_teste.classList.toggle("compartilhar");
+        loading();
 
-        calcResultado();
     }
 
     if (contquestion == listaQuestoes.length) {
@@ -143,7 +140,44 @@ function validaReposta() {
     }
 }
 
+function loading() {
+    const progress = document.getElementById('progressAux');
+    const carregando = document.getElementById('carregando');
+    let auxProgress = 0;
+
+    carregando.classList.toggle("desabilitado");
+    carregando.classList.toggle("d-flex");
+
+    let interval = setInterval(() => {
+
+        if (auxProgress <= 100) {
+            auxProgress += 1;
+            progress.style.width = auxProgress + "%";
+        }
+        if (auxProgress > 100) {
+
+            clearInterval(interval);
+
+            setTimeout(function () {
+
+                carregando.classList.toggle("d-flex");
+                carregando.classList.toggle("desabilitado");
+                auxProgress = 0;
+                progress.style.width = auxProgress + "%";
+                calcResultado();
+
+            }, 1000);
+
+        }
+    }, 30);
+}
+
 function calcResultado() {
+
+    resultado.classList.toggle("desabilitado");
+    container_teste.classList.remove("bg-light", "border", "border-solid", "border-light");
+    container_teste.classList.toggle("compartilhar");
+
     let mostrarResultado12 = document.getElementById("mostrarResultado12");
     let mostrarResultado = document.getElementById("mostrarResultado");
     let posicao = 0;

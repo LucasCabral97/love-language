@@ -54,12 +54,26 @@
 
         </div>
 
-        <div id="resultado" class="container desabilitado">
+        <div id="carregando" class="container flex-column justify-content-center align-items-center h-100 desabilitado">
+
+            <h2 class="text-danger">CARREGANDO RESULTADO ...</h2>
+
+            <div class="col-10">
+                <div class="progress">
+                    <div id="progressAux" class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                        style="width: 0%"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="resultado" class="container flex-column justify-content-center align-items-center h-100 desabilitado">
 
             <div id="infoResultado" class="container">
                 <h2>Teste Finalizado</h2>
                 <p style="font-size: 20px;">Esse foi o resultado...<br>As duas linguagens predominantes são essas:
                 </p>
+
                 <p id="mostrarResultado12" class="text-success mb-2 sombra" style="font-size: 20px; font-weight: bold;">
                 </p>
                 <p id="mostrarResultado" class="text-warning sombra" style="font-size: 15px; font-weight: bold;"></p>
@@ -78,6 +92,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/logic.js"></script>
+
+    <script>
+
+    </script>
 
 </body>
 
